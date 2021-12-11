@@ -23,6 +23,7 @@ async def poll(client: discord.Client, message: discord.Message, *):
     help_embed.add_field(name="`!poll remove <number>`", value="Removes the specified choice from your poll.", inline=False)
     help_embed.add_field(name="`!poll publish`", value="Makes the poll uneditable and sets up the reactions.", inline=False)
     
+    await message.channel.send(embed=help_embed)
 
 
 @app.route("!poll new", raw_args=True)
