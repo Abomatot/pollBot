@@ -5,16 +5,24 @@ message_of_user_id_dict = {}
 app = App()
 
 
+@app.route("!belissibot")
+async def belissibot_help(client: discord.Client, message: discord.Message):
+    help_embed = discord.Embed(title="Commands of the Belissibot", color=discord.Color(0xFFFF00))
+    help_embed.add_field(name="`!poll`", value="Shows all commands related to the poll-functionality.",
+                         inline=False)
+
+    await message.channel.send(embed=help_embed)
+
+
 @app.route("!poll", raw_args=True)
-async def poll(client: discord.Client, message: discord.Message):
-    help_embed = discord.Embed(title="Usage of `!poll`", colour=discord.Color(0x7100aa),
+async def poll(client: discord.Client, message: discord.Message, *):
+    help_embed = discord.Embed(title="Poll-Commands of the Belissibot", colour=discord.Color(0xFFFF00),
                           description="Tip: Add a `help` to any command to show its help.")
     help_embed.add_field(name="`!poll new`", value="Creates a new poll.", inline=False)
-    help_embed.add_field(name="`!poll add <answer>`", value="Adds a option two answer to your poll.", inline=False)
-    help_embed.add_field(name="`!poll remove <number>`", value="Removes the specified option to answer from your poll.", inline=False)
+    help_embed.add_field(name="`!poll add <answer>`", value="Adds a choice to your poll.", inline=False)
+    help_embed.add_field(name="`!poll remove <number>`", value="Removes the specified choice from your poll.", inline=False)
     help_embed.add_field(name="`!poll publish`", value="Makes the poll uneditable and sets up the reactions.", inline=False)
-
-
+    
 
 
 @app.route("!poll new", raw_args=True)
